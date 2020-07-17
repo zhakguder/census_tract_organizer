@@ -23,7 +23,7 @@ for disease in diseases.types:
     if disease.name != 'AJ29':
         continue
     for zoom in [16, 17, 18]:
-        image_path = os.path.join(image_root, int(zoom) + '_copy')
+        image_path = os.path.join(image_root, str(zoom) + '_copy')
         disease.copy(zoom, image_path)
 
 
