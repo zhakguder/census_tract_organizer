@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os
-
+from shutil import copyfile
 name = 'AJ29'
 df = None
 coding = {'all_the_time': [1,2], 'not_at_all': [4,5], 'mid': [3]}
@@ -32,7 +32,16 @@ def _organize(row):
 partition_tract_nos = None
 
 def copy(zoom, image_folder):
+    img_bases = os.listdir(image_folder)
+    imgs = [os.path.join(image_folder,x) for x in img_bases]
+
     root = os.path.join(name, zoom)
+
+
     for key in partition_tract_nos.keys():
         path = os.path.join(root, key)
+        if not os.path.isdir(path):
+            os.mkdir(path)
         breakpoint()
+        for img, img_base in zip(imgs, img_bases):
+            copyfile(img, os.path.join(path, img_base))
