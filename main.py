@@ -24,7 +24,7 @@ for disease in diseases.types:
         continue
     for zoom in [16, 17, 18]:
         image_path = os.path.join(image_root, zoom + '_copy')
-        disease.copy(zoom, )
+        disease.copy(zoom, image_path)
 
 
 # wirte the combined clean dataframes
