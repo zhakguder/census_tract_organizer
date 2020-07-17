@@ -39,15 +39,21 @@ def partition_tract_nos(disease):
 
 def copy(disease, zoom, image_folder):
 
-    img_bases = os.listdir(image_folder)
-    imgs = [os.path.join(image_folder,x) for x in img_bases]
+    #img_bases = os.listdir(image_folder)
+    #imgs = [os.path.join(image_folder,x) for x in img_bases]
 
     root = os.path.join('images', disease.name, zoom)
 
+    for key, tract_nos in disease.partition_tract_nos.items():
 
-    for key in disease.partition_tract_nos.keys():
         path = os.path.join(root, key)
+
         if not os.path.isdir(path):
             os.makedirs(path)
-        for img, img_base in zip(imgs, img_bases):
-            copyfile(img, os.path.join(path, img_base))
+
+        for tract_no in tract_nos:
+
+            img_base = tract_no + '.jpg'
+            src_img = os.path.join(image_folder, img_base)
+            dest_img = os.path.join(path, img_base)
+            copyfile(img, os.path.join(src_img, dest_img))
