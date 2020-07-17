@@ -41,7 +41,7 @@ def copy(zoom, image_folder):
     for key in partition_tract_nos.keys():
         path = os.path.join(root, key)
         if not os.path.isdir(path):
-            os.mkdir(path)
+            os.makedirs(path)
         breakpoint()
         for img, img_base in zip(imgs, img_bases):
             copyfile(img, os.path.join(path, img_base))
