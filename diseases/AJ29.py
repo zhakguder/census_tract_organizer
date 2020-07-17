@@ -35,7 +35,7 @@ def copy(zoom, image_folder):
     img_bases = os.listdir(image_folder)
     imgs = [os.path.join(image_folder,x) for x in img_bases]
 
-    root = os.path.join(name, zoom)
+    root = os.path.join('images', name, zoom)
 
 
     for key in partition_tract_nos.keys():
