@@ -56,4 +56,7 @@ def copy(disease, zoom, image_folder):
             img_base = str(tract_no) + '.jpg'
             src_img = os.path.join(image_folder, img_base)
             dest_img = os.path.join(path, img_base)
-            copyfile(src_img, dest_img)
+            try:
+                copyfile(src_img, dest_img)
+            except:
+                print(img_base)
