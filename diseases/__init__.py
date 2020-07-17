@@ -2,6 +2,9 @@
 
 from diseases import AB17, AB22, AJ29, AJ32, AK28, RBMI
 import pandas as pd
+import os
+from shutil import copyfile
+
 tract_no = 'TRACT10'
 code = 'Level'
 colname_prefix = 'Pct_'
@@ -33,3 +36,18 @@ def partition_tract_nos(disease):
             filtered = disease.df[colnames].apply(criterion)
         tract_nos[group] = disease.df[filtered].index.tolist()
     return tract_nos
+
+def copy(disease, zoom, image_folder):
+
+    img_bases = os.listdir(image_folder)
+    imgs = [os.path.join(image_folder,x) for x in img_bases]
+
+    root = os.path.join('images', disease.name, zoom)
+
+
+    for key in disease.partition_tract_nos.keys():
+        path = os.path.join(root, key)
+        if not os.path.isdir(path):
+            os.makedirs(path)
+        for img, img_base in zip(imgs, img_bases):
+            copyfile(img, os.path.join(path, img_base))
