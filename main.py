@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 import disease_data, diseases
+import os
 
+image_root = '../aerial_images'
 # where to read the raw disease occurence data from
 disease_data.path = 'ADULT.xlsx'
 
@@ -18,8 +20,10 @@ for disease in diseases.types:
     # place each clean disease dataframe in a list
     dfs.append(diseases.arrange_disease(disease))
     disease.partition_tract_nos = diseases.partition_tract_nos(disease)
+    for zoom in [16, 17, 18]:
+        image_path = os.path.join(image_root, zoom + '_copy')
+        disease.copy(zoom, )
 
 
-breakpoint()
 # wirte the combined clean dataframes
 # disease_data.write_clean(dfs)

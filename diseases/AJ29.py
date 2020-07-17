@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 
 name = 'AJ29'
 df = None
@@ -29,3 +30,9 @@ def _organize(row):
 # high: all_the_time > not_at_all AND all_the_time > mid
 # low: not_at_all > all_the_time AND not_at_all > mid
 partition_tract_nos = None
+
+def copy(zoom, image_folder):
+    root = os.path.join(name, zoom)
+    for key in partition_tract_nos.keys():
+        path = os.path.join(root, key)
+        breakpoint()
